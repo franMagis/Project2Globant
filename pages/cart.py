@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
-
-class SwagLabsCart:
+class SwagLabsCartPage:
 
     #URL
     URL: 'https://www.saucedemo.com/cart.html'
@@ -9,7 +9,9 @@ class SwagLabsCart:
     #Locators
     CHECKOUT = (By.ID, 'checkout')
 
+
     #Initializer
+
     def __init__(self, browser):
         self.browser = browser
 
@@ -19,7 +21,7 @@ class SwagLabsCart:
     def load(self):
         self.browser.get(self.URL)
 
-    def checkout(self):
+    def press_checkout(self):
 
         button = self.browser.find_element(*self.CHECKOUT)
         button.click()

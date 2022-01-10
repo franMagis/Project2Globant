@@ -20,6 +20,9 @@ class SwagLabsHomePage:
   TITLE = (By.CLASS_NAME, 'title')
   MENU =  (By.ID,'react-burger-menu-btn')
   LOGOUT = (By.ID,'logout_sidebar_link')
+
+  CART = (By.CLASS_NAME, 'shopping_cart_link')
+
   CONTEINER = (By.CLASS_NAME, 'product_sort_container')
   LOHI = (By.ID,'lohi')
 
@@ -58,3 +61,8 @@ class SwagLabsHomePage:
     title = self.browser.find_element(*self.TITLE)
     value = title
     return value
+
+  def goCart(self):
+
+    cart = self.browser.find_element(*self.CART)
+    cart.click()
