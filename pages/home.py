@@ -15,6 +15,8 @@ class SwagLabsHomePage:
   PASSWORD_INPUT = (By.ID,'password')
   LOGIN =  (By.ID,'login-button')
   TITLE = (By.CLASS_NAME, 'title')
+  MENU =  (By.ID,'react-burger-menu-btn')
+  LOGOUT = (By.ID,'logout_sidebar_link')
 
   # Initializer
 
@@ -25,6 +27,12 @@ class SwagLabsHomePage:
 
   def load(self):
     self.browser.get(self.URL)
+
+  def log_out(self):
+    menu = self.browser.find_element(*self.MENU)
+    menu.click()
+    logOut = self.browser.find_element(*self.LOGOUT)
+    logOut.click()
 
 
   def title_value(self):
