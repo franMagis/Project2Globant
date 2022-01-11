@@ -2,7 +2,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-
 class SwagLabsLogInPage:
 
   # URL
@@ -35,7 +34,6 @@ class SwagLabsLogInPage:
 
     logIn_button = self.browser.find_element(*self.LOGIN)
     logIn_button.click()
-
 
   def errorMs(self):
 

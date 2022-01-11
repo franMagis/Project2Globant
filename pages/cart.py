@@ -4,13 +4,14 @@ from selenium.webdriver.common.keys import Keys
 class SwagLabsCartPage:
 
     #URL
-    URL: 'https://www.saucedemo.com/cart.html'
+    URL = 'https://www.saucedemo.com/cart.html'
 
     #Locators
     CHECKOUT = (By.ID, 'checkout')
 
 
     #Initializer
+
 
     def __init__(self, browser):
         self.browser = browser

@@ -5,7 +5,6 @@ import pytest
 
 from pages.cart import SwagLabsCartPage
 from pages.home import SwagLabsHomePage
-from pages.result import swagLabsResultPage
 from pages.logIn import SwagLabsLogInPage
 from pages.checkoutOne import SwagLabsCheckoutPageOne
 
@@ -20,23 +19,24 @@ from pages.checkoutOne import SwagLabsCheckoutPageOne
 def test_complete_purchase_out(browser, userName, password,zipCode):
 
   logIn_page = SwagLabsLogInPage(browser)
-  result_page = swagLabsResultPage(browser)
   home_page = SwagLabsHomePage(browser)
   cart_page = SwagLabsCartPage(browser)
   checkOut_page = SwagLabsCheckoutPageOne(browser)
-
   logIn_page.load()
   logIn_page.logIn(userName, password)
 
-  # Given the log in page of swag
+  # Given the home page of swag
   home_page.load()
-  # When the user type correct credentials
-
+  # When the user adds a product
   home_page.add_back_pack()
+
   home_page.goCart()
   cart_page.press_checkout()
 
+  checkOut_page.load()
   checkOut_page.checkoutOne(userName, userName, zipCode)
+
+  browser.implicitly_wait(10)
 
 
   # Then the home page gets load

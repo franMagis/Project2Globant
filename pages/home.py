@@ -22,6 +22,8 @@ class SwagLabsHomePage:
   LOGOUT = (By.ID,'logout_sidebar_link')
 
   CART = (By.CLASS_NAME, 'shopping_cart_link')
+  CARTSPAN = (By.CLASS_NAME,'shopping_cart_badge')
+
 
   CONTEINER = (By.CLASS_NAME, 'product_sort_container')
   LOHI = (By.ID,'lohi')
@@ -30,6 +32,7 @@ class SwagLabsHomePage:
 
   # Initializer
 
+  span_cart = 0
   def __init__(self, browser):
     self.browser = browser
 
@@ -48,6 +51,8 @@ class SwagLabsHomePage:
 
     button = self.browser.find_element(*self.PRODUCT_BACKPACK)
     button.click()
+    self.span_cart += 1
+
 
   def order_prices(self):
 
@@ -66,3 +71,10 @@ class SwagLabsHomePage:
 
     cart = self.browser.find_element(*self.CART)
     cart.click()
+
+  def cart_span(self):
+
+    cart_span = self.browser.find_element(*self.CARTSPAN)
+    span_count = cart_span.text
+    return int(span_count)
+

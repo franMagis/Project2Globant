@@ -1,31 +1,28 @@
-"""
-These tests cover SwagLabs log in.
-"""
 import pytest
 
+from pages.checkoutOne import SwagLabsCheckoutPageOne
 from pages.home import SwagLabsHomePage
-from pages.result import swagLabsResultPage
 from pages.logIn import SwagLabsLogInPage
 
 
 #----------------------log in---------------------------------------------------------------#
 @pytest.mark.parametrize('userName', ['standard_user', 'problem_user','performance_glitch_user'])
 @pytest.mark.parametrize('password', ['secret_sauce'])
-def test_order_prices(browser, userName, password):
+def test_random(browser, userName, password):
 
   logIn_page = SwagLabsLogInPage(browser)
-  result_page = swagLabsResultPage(browser)
   home_page = SwagLabsHomePage(browser)
-  logIn_page.load()
-  logIn_page.logIn(userName, password)
+  checkOut_page = SwagLabsCheckoutPageOne(browser)
+
 
   # Given the log in page of swag
-  home_page.load()
+  logIn_page.load()
+
   # When the user type correct credentials
-  home_page.order_prices()
+  logIn_page.logIn(userName,password)
+
 
   # Then the home page gets load
+  home_page.load()
 
-  #assert 'Swag Labs' == browser.title
-  #assert 'Products'  == home_page.title_value()
-  #assert 'Products'  == home_page.title_value()
+  checkOut_page.load()
