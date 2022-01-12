@@ -8,24 +8,17 @@ from pages.logIn import SwagLabsLogInPage
 #----------------------log in---------------------------------------------------------------#
 @pytest.mark.parametrize('userName', ['standard_user', 'problem_user','performance_glitch_user'])
 @pytest.mark.parametrize('password', ['secret_sauce'])
-def test_logIn(browser, userName, password):
+def test_log_out(browser, userName, password):
 
   logIn_page = SwagLabsLogInPage(browser)
   home_page = SwagLabsHomePage(browser)
 
   # Given the log in page of swag
   logIn_page.load()
+  logIn_page.logIn(userName, password)
 
-  # When the user type correct credentials
-  logIn_page.logIn(userName,password)
+  # When the user logs out
+  home_page.log_out()
 
-
-  # Then the home page gets load
-  home_page.load()
-
-  #Assert
-  header_container = browser.find_element_by_class_name('header_secondary_container')
-  titulo=header_container.find_element_by_class_name('title').text
-  assert titulo == 'PRODUCTS'
-  assert browser.current_url == 'https://www.saucedemo.com/inventory.html'
-
+  # Then the log in pages gets load
+  assert browser.current_url == 'https://www.saucedemo.com/'
