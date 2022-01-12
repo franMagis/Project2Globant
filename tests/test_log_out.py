@@ -1,6 +1,4 @@
-"""
-These tests cover SwagLabs log out.
-"""
+
 import pytest
 
 from pages.home import SwagLabsHomePage
@@ -14,17 +12,13 @@ def test_log_out(browser, userName, password):
 
   logIn_page = SwagLabsLogInPage(browser)
   home_page = SwagLabsHomePage(browser)
+
+  # Given the log in page of swag
   logIn_page.load()
   logIn_page.logIn(userName, password)
 
-
-  # Given the log in page of swag
-  home_page.load()
   # When the user logs out
   home_page.log_out()
 
   # Then the log in pages gets load
-
-  assert 'Swag Labs' == browser.title
-  #assert 'Products'  == home_page.title_value()
-  #assert 'Products'  == home_page.title_value()
+  assert browser.current_url == 'https://www.saucedemo.com/'

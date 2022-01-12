@@ -1,9 +1,10 @@
 from lib2to3.pgen2 import driver
 from select import select
-from tkinter.tix import Select
+from time import sleep
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
 
 
 class SwagLabsHomePage:
@@ -29,6 +30,8 @@ class SwagLabsHomePage:
   LOHI = (By.ID,'lohi')
 
   PRODUCT_BACKPACK = (By.ID,'add-to-cart-sauce-labs-backpack')
+
+
 
   # Initializer
 
@@ -56,11 +59,15 @@ class SwagLabsHomePage:
 
   def order_prices(self):
 
-    container = self.browser.find_element(*self.CONTEINER)
-    container.click()
+    product_sort_container = Select(self.browser.find_element(By.CLASS_NAME,'product_sort_container'))
+    product_sort_container.select_by_value('lohi')
 
-    dropdown = Select(self.browser.find_element_by_id('product_sort_container'))
-    dropdown.select_by_index(3).click()
+    elements_prices = self.browser.find_elements(By.CLASS_NAME,'inventory_item_price')
+
+    price_element_list = []
+    for price in elements_prices :
+      price_element_list.append(float(price.text[1:]))
+    assert price_element_list == sorted(price_element_list)
 
   def title_value(self):
     title = self.browser.find_element(*self.TITLE)

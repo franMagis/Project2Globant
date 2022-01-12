@@ -1,6 +1,4 @@
-"""
-These tests cover SwagLabs log in.
-"""
+
 import pytest
 
 from pages.home import SwagLabsHomePage
@@ -24,5 +22,10 @@ def test_logIn(browser, userName, password):
 
   # Then the home page gets load
   home_page.load()
-  assert 'Swag Labs' == browser.title
+
+  #Assert
+  header_container = browser.find_element_by_class_name('header_secondary_container')
+  titulo=header_container.find_element_by_class_name('title').text
+  assert titulo == 'PRODUCTS'
+  assert browser.current_url == 'https://www.saucedemo.com/inventory.html'
 

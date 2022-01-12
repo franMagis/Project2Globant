@@ -1,14 +1,13 @@
-"""
-These tests cover SwagLabs log in with wrong credentials.
-"""
+
 import pytest
+from selenium.webdriver.common.by import By
 
 from pages.home import SwagLabsHomePage
 from pages.logIn import SwagLabsLogInPage
 
 
 #----------------------Fail to log in---------------------------------------------------------------#
-@pytest.mark.parametrize('userName', ['locked_out_user'])
+@pytest.mark.parametrize('userName', ['Francisco'])
 @pytest.mark.parametrize('password', ['secret_sauce','abcd123'])
 def test_logIn_Fail(browser, userName,password):
 
@@ -21,5 +20,6 @@ def test_logIn_Fail(browser, userName,password):
   logIn_page.logIn(userName, password)
 
   # Then a error messeges appears
-  logIn_page.errorMs()
+  assert logIn_page.errorMs() == "Epic sadface: Username and password do not match any user in this service"
+
 
